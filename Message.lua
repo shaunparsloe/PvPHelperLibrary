@@ -69,11 +69,11 @@ function Message:SendMessagePrefixed(strPrefix, strType, strMessage, strTarget)
   self.Payload = strMessage
   self.To = strTarget
   if (strTarget) then
-      print("Message.SendMessagePrefixed:"..strPrefix .." : "..strType.." : "..strMessage.." : "..strTarget)
+      --print("DEBUG: Message.SendMessagePrefixed:"..strPrefix .." : "..strType.." : "..strMessage.." : "..strTarget)
     SendAddonMessage(strPrefix, self.Body, "WHISPER", self.To)
   else
     --If we are in a party or a raid
-      print("Message.SendMessagePrefixed:"..strPrefix .." : "..strType.." : "..strMessage.." : TO PARTY")
+      --print("DEBUG: Message.SendMessagePrefixed:"..strPrefix .." : "..strType.." : "..strMessage.." : TO PARTY")
 	SendAddonMessage(strPrefix, self.Body, "PARTY")
   end
   self.Time = time()
