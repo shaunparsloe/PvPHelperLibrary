@@ -1,0 +1,12 @@
+## Interface: 50400
+## X-Min-Interface: 50001
+## Title:|cffffd200PVP Helper|r |cff69ccf0Library|r
+## Notes: Library functions for PVP Helper and PVP Helper Server
+## LoadOnDemand: 0
+## DefaultState: enabled
+## Author: Vordermann
+Localization.lua
+CCType.lua
+CCTypeList.lua
+Message.lua
+Test_MockWoWFunctions.lua
