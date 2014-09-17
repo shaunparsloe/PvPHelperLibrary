@@ -12,42 +12,42 @@ function Message.new (options)
   self.To = "";
   self.ReceivePrefix = "blankprefix";
   self.Header = "";
-  self.Body = ""
+  self.Payload = ""
   self.Time = ""
   return self;
 end
-
-function Message:Clone(message)
-  local objMsg = Message.new();
-  if (message) then
-    objMsg.Text = message.Text
-    objMsg.From = message.From
-    objMsg.To = message.To
-    objMsg.Prefix = message.Prefix
-    objMsg.Payload = message.Payload
-    objMsg.Header = message.Header
-    objMsg.Body = message.Body
-    objMsg.Time = message.Time
-  end
-  return objMsg;
-end
+--
+--function Message:Clone(message)
+--  local objMsg = Message.new();
+--  if (message) then
+--    objMsg.Text = message.Text
+--    objMsg.From = message.From
+--    objMsg.To = message.To
+--    objMsg.Prefix = message.Prefix
+--    objMsg.Payload = message.Payload
+--    objMsg.Header = message.Header
+--    objMsg.Body = message.Body
+--    objMsg.Time = message.Time
+--  end
+--  return objMsg;
+--end
 
 function Message:SendMessagePrefixed(strPrefix, strType, strMessage, strTarget)
 	if not strMessage then
 		strMessage = "";
 	end
 --	print("Preparing message for sending ");
-  self.Header = strType
-  self.Body = self.Header.."|"..strMessage
-  self.Payload = strMessage
-  self.To = strTarget
+  self.Header = tostring(strType)
+  self.Payload = tostring(self.Header).."."..tostring(strMessage)
+  self.Payload2 = tostring(strMessage)
+  self.To = tostring(strTarget);
   if (strTarget) then
-      print("DEBUG: Message.SendMessagePrefixed:"..strPrefix .." : "..strType.." : "..strMessage.." : "..strTarget)
-    SendAddonMessage(strPrefix, self.Body, "WHISPER", self.To)
+      --print("DEBUG: Message.SendMessagePrefixed:"..strPrefix ..", "..self.Payload.." : "..self.To)
+    SendAddonMessage(strPrefix, self.Payload, "WHISPER", self.To)
   else
     --If we are in a party or a raid
       --print("DEBUG: Message.SendMessagePrefixed:"..strPrefix .." : "..strType.." : "..strMessage.." : TO PARTY")
-	SendAddonMessage(strPrefix, self.Body, "PARTY")
+	SendAddonMessage(strPrefix, self.Payload, "PARTY")
   end
   self.Time = time()
 
@@ -58,7 +58,7 @@ end
 
 function Message:Format(strPrefix, strMessage, strType, strSender)
   if strPrefix == self.ReceivePrefix then
-	local messageSplit = string_split(strMessage, "|");
+	local messageSplit = string_split(strMessage, ".");
 
     self.Text = strMessage;
     self.Header = messageSplit[1];
@@ -71,6 +71,19 @@ function Message:Format(strPrefix, strMessage, strType, strSender)
     self.Type = strType
     self.From = strSender
     self.Time = time()
+    
+--    print("Format Message: strMessage ".. tostring(strMessage));
+--    print("Format Message: self.Text ".. tostring(self.Text));
+--    print("Format Message: self.Header ".. tostring(self.Header));
+--    print("Format Message: self.Body ".. tostring(self.Body));
+--    print("Format Message: self.Type ".. tostring(self.Type));
+--    print("Format Message: self.From ".. tostring(self.From));
+--    print("Format Message: self.strSender ".. tostring(self.strSender));
+--    print("Format Message: self.Time ".. tostring(self.Type));
+--    print("Format Message: self.Type ".. tostring(self.Type));
+--    print("Format Message: self.Type ".. tostring(self.Type));
+--    print("Format Message: self.Type ".. tostring(self.Type));
+--    print("Format Message: self.Type ".. tostring(self.Type));
   else
 		print("Message prefix is "..strPrefix.." expecting to receive ".. self.ReceivePrefix)
   end
