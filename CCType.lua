@@ -24,7 +24,7 @@ function CCType.new (options)
     IsChannelled = options.IsChannelled,
     Weighting = options.Weighting,
     _IsCooldown = false,
-    _IsActive = false,
+    _IsActiveCC = false,
     _CooldownExpires = 0,
     _ActiveCCExpires = 0}
   , CCType)
@@ -38,21 +38,21 @@ function CCType:CastSpell()
   self._CooldownExpires = time() + self.Cooldown;
   self._ActiveCCExpires = time() + self.Duration;
   self._IsCooldown = true;
-  self._IsActive = true;
+  self._IsActiveCC = true;
   return self
 end
 
 
 function CCType:Reset()
 	self._IsCooldown = false;
-	self._IsActive = false;
+	self._IsActiveCC = false;
 	self._CooldownExpires = 0;
 	self._ActiveCCExpires = 0;
 	return self
 end
 
 function CCType:RemoveActiveCC()
-	self._IsActive = false;
+	self._IsActiveCC = false;
 	self._ActiveCCExpires = 0;
 	return self
 end
@@ -88,24 +88,21 @@ end
 
 function CCType:IsActive()
   local retval = false;
-  if (self._IsActive) then
+  if (self._IsActiveCC) then
     if (time() > self._ActiveCCExpires) then
-      self._IsActive = false
-      retval = true;
+      self._IsActiveCC = false
     end
-  else
-    retval = false;
   end
 
-  return retval;
+  return self._IsActiveCC;
 end
 
 function CCType:ActiveCCExpires()
   local seconds = 0;
-  if self._IsActive then
+  if self:IsActive() then
     seconds = self._ActiveCCExpires - time();
     if (seconds < 0) then
-      self._IsActive = false
+      self._IsActiveCC = false
       seconds = 0;
     end
   end
