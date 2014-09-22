@@ -39,6 +39,10 @@ if os then
   function Frame:CreateFontString(strName, strLayer, strInherits) return Frame.new(); end
   function Frame:SetUserPlaced(bln) end;
 
+	function Frame:SetFontObject() return nil; end;
+	function Frame:SetJustifyH() return nil; end;
+	function Frame:SetFading() return nil; end;
+
   function Frame:SetNormalFontObject(strFontObject) end;
   function Frame:SetHighlightFontObject(strFontObject) end;
   function Frame:SetNormalFontObject(strFontObject) end;
@@ -78,7 +82,6 @@ if os then
     return retval; 
   end;
   
-  
   function UnitGUID(strName)
     local retval = strName;
     if (DEBUG.UnitGUID and DEBUG.UnitGUID[strName]) then
@@ -86,6 +89,8 @@ if os then
     end
     return retval; 
   end
+ 
+	function GetRealmName() return "Hellfire" end
   
   function UnitClass(target) return nil, nil; end;
   function UnitHealth(unit) return 100; end

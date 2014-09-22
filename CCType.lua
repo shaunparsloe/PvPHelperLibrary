@@ -33,8 +33,8 @@ function CCType.new (options)
 end
 
 function CCType:CastSpell()
-  print ("self._IsCooldown = true;");
-  print ("self._CooldownExpires = "..tostring(time() + self.Cooldown));
+  --print ("self._IsCooldown = true;");
+  --print ("self._CooldownExpires = "..tostring(time() + self.Cooldown));
   self._CooldownExpires = time() + self.Cooldown;
   self._ActiveCCExpires = time() + self.Duration;
   self._IsCooldown = true;

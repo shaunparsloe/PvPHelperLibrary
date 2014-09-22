@@ -15,7 +15,7 @@ function CCTypeList.new()
 end
 
 function CCTypeList:Add(objCCType)
-  table.insert(self, objCCType)
+  table.insert(self, objCCType);
   self.SpellIDLookup[tostring(objCCType.SpellId)] = table.getn(self); 	-- Add to lookup table.
 end
 
