@@ -89,8 +89,8 @@ end
 --Conditional depending on test/live
 if (os) then
   function GetTime()
-    if DEBUG and DEBUG.TimeToReturn then
-      return DEBUG.TimeToReturn
+    if DEBUG and DEBUG.SetClockSeconds then
+      return DEBUG.SetClockSeconds
     else
       return os.clock()
     end

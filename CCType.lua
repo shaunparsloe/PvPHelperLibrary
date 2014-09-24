@@ -75,7 +75,7 @@ end
 function CCType:CooldownExpires()
   local seconds = 0;
   if self._IsCooldown then
-    seconds = self._CooldownExpires - GetTime();
+    seconds = math.round(self._CooldownExpires - GetTime(),1);
     if (seconds <= 0) then
       self._IsCooldown = false
       seconds = 0;
