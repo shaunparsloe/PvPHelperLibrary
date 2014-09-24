@@ -34,9 +34,9 @@ end
 
 function CCType:CastSpell()
   --print ("self._IsCooldown = true;");
-  --print ("self._CooldownExpires = "..tostring(time() + self.Cooldown));
-  self._CooldownExpires = time() + self.Cooldown;
-  self._ActiveCCExpires = time() + self.Duration;
+  --print ("self._CooldownExpires = "..tostring(GetTime() + self.Cooldown));
+  self._CooldownExpires = GetTime() + self.Cooldown;
+  self._ActiveCCExpires = GetTime() + self.Duration;
   self._IsCooldown = true;
   self._IsActiveCC = true;
   return self
@@ -61,7 +61,7 @@ end
 function CCType:IsAvailable()
   local retval = false;
   if (self._IsCooldown) then
-    if (time() > self._CooldownExpires) then
+    if (GetTime() > self._CooldownExpires) then
       self._IsCooldown = false
       retval = true;
     end
@@ -75,8 +75,8 @@ end
 function CCType:CooldownExpires()
   local seconds = 0;
   if self._IsCooldown then
-    seconds = self._CooldownExpires - time();
-    if (seconds < 0) then
+    seconds = self._CooldownExpires - GetTime();
+    if (seconds <= 0) then
       self._IsCooldown = false
       seconds = 0;
     end
@@ -89,7 +89,7 @@ end
 function CCType:IsActive()
   local retval = false;
   if (self._IsActiveCC) then
-    if (time() > self._ActiveCCExpires) then
+    if (GetTime() > self._ActiveCCExpires) then
       self._IsActiveCC = false
     end
   end
@@ -100,7 +100,7 @@ end
 function CCType:ActiveCCExpires()
   local seconds = 0;
   if self:IsActive() then
-    seconds = self._ActiveCCExpires - time();
+    seconds = self._ActiveCCExpires - GetTime();
     if (seconds < 0) then
       self._IsActiveCC = false
       seconds = 0;

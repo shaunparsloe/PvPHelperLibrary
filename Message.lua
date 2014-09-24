@@ -49,7 +49,7 @@ function Message:SendMessagePrefixed(strPrefix, strType, strMessage, strTarget)
       --print("DEBUG: Message.SendMessagePrefixed:"..strPrefix .." : "..strType.." : "..strMessage.." : TO PARTY")
 	SendAddonMessage(strPrefix, self.Payload, "PARTY")
   end
-  self.Time = time()
+  self.Time = GetTime()
 
   return self
 end
@@ -70,7 +70,7 @@ function Message:Format(strPrefix, strMessage, strType, strSender)
 --    
     self.Type = strType
     self.From = strSender
-    self.Time = time()
+    self.Time = GetTime()
     
 --    print("Format Message: strMessage ".. tostring(strMessage));
 --    print("Format Message: self.Text ".. tostring(self.Text));

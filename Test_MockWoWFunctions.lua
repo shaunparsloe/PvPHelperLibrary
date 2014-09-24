@@ -14,6 +14,8 @@ if os then
   function Frame:SetAttribute(stratt, strset) end
   function Frame:RegisterEvent() end;
   function Frame:Enable() end
+  function Frame:AddMessage() end
+  function Frame:Clear() end
   function Frame:Disable() end
   function Frame:SetFrameStrata() end
   function Frame:SetShadowOffset() end

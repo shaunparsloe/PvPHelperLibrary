@@ -9,4 +9,5 @@ Localization.lua
 CCType.lua
 CCTypeList.lua
 Message.lua
+Utils.lua
 Test_MockWoWFunctions.lua
