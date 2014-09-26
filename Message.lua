@@ -38,11 +38,15 @@ function Message:SendMessagePrefixed(strPrefix, strType, strMessage, strTarget)
 	end
 --	print("Preparing message for sending ");
   self.Header = tostring(strType)
-  self.Payload = tostring(self.Header).."."..tostring(strMessage)
-  self.Payload2 = tostring(strMessage)
+  --self.Payload = tostring(self.Header).."."..tostring(strMessage)
+  self.Payload = tostring(strMessage)
   self.To = tostring(strTarget);
+  if DEBUG and DEBUG.LogMessages then
+    table.insert(GVAR.MessageLog, self);
+  end
+
   if (strTarget) then
-      --print("DEBUG: Message.SendMessagePrefixed:"..strPrefix ..", "..self.Payload.." : "..self.To)
+      print("DEBUG: Message.SendMessagePrefixed:"..strPrefix ..", "..self.Payload.." : "..self.To)
     SendAddonMessage(strPrefix, self.Payload, "WHISPER", self.To)
   else
     --If we are in a party or a raid
