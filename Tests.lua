@@ -48,10 +48,10 @@ function TEST_MESSAGE_FORMAT()
   GVAR.MessageLog = {};
 
   -- Act
-  objMessage:Format("TestPrefix", "WhatSpellsDoYouHave.1234", "WHISPER", "FromSender") 
+  objMessage:Format("TestPrefix", "ActNow.1234", "WHISPER", "FromSender") 
   
-  TESTAssert("WhatSpellsDoYouHave.1234", objMessage.CompleteText);
-  TESTAssert("WhatSpellsDoYouHave", objMessage.Header);
+  TESTAssert("ActNow.1234", objMessage.CompleteText);
+  TESTAssert("ActNow", objMessage.Header);
   TESTAssert("1234", objMessage.Body);
   TESTAssert("WHISPER", objMessage.Type);
   TESTAssert("FromSender", objMessage.From);
