@@ -17,6 +17,8 @@ if os then
   function Frame:AddMessage() end
   function Frame:Clear() end
   function Frame:Disable() end
+  function Frame:Show() end
+  function Frame:Hide() end
   function Frame:SetFrameStrata() end
   function Frame:SetShadowOffset() end
   function Frame:SetShadowColor() end
@@ -94,16 +96,41 @@ if os then
  
 	function GetRealmName() return "Hellfire" end
   
-  function UnitClass(target) return nil, nil; end;
+  function UnitClass(target) return "Rogue", "ROGUE", 4; end;
   function UnitHealth(unit) return 100; end
   function UnitHealthMax(unit) return 100; end
   function RegisterAddonMessagePrefix(string) end;
   function UI_SetMainAssist() end;
    
+  function PlaySoundFile(soundFile) print("MOCK:Playing:"..tostring(soundFile)); end;
+    
   function GetPlayerInfoByGUID(guid)
     return "Rogue", "ROGUE", "Human", "HUMAN", "Male", "Sahk", "Hellfire"
   end
     
+  function GetSpellInfo(spellIdOrName)
+    if not GVAR.AllCCTypes then
+      --print("GetSpellInfo: Loading CCTypes");
+      GVAR.AllCCTypes = deepcopy(CCTypeList:LoadAllCCTypes());
+    end
+    local localizedClass, myClass = UnitClass("player");
+    foundSpellId = GVAR.AllCCTypes:LookupSpellId(spellIdOrName);
+    if foundSpellId then
+      --print("GetSpellInfo:FoundSpellId:"..spellIdOrName);
+      return foundSpellId.CCName;
+    else
+      local i, ccSpell 
+      for i, ccSpell in ipairs(GVAR.AllCCTypes) do
+        --print("GetSpellInfo: Checking "..spellIdOrName);
+        if ccSpell.CCName == spellIdOrName then
+          --print("GetSpellInfo: Found "..spellIdOrName..".  My Class = "..myClass..", ccClass="..ccSpell.Class);
+          --if myClass == ccSpell.Class then
+            return ccSpell.CCName;
+          --end
+        end
+      end
+    end
+  end
     
   function IsPlayerSpell(spellId)
     local retval = false

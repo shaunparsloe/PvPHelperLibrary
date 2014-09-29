@@ -11,6 +11,7 @@ dofile(libfilepath.."CCTypeList.lua")
 dofile(libfilepath.."Message.lua")
 dofile(libfilepath.."Test_MockWoWFunctions.lua")
 
+GVAR = {};
 
 function TEST_MESSAGE_FORMAT_SHORT()
   -- Arrange
