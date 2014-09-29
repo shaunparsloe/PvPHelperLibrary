@@ -1,8 +1,8 @@
 Message = {}
 Message.__index = Message; -- failed table lookups on the instances should fallback to the class table, to get methods
 
-GVAR = {}
-UIWidgets = {}
+--GVAR = {}
+--UIWidgets = {}
 
 
 function Message.new (options)
