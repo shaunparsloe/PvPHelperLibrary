@@ -171,22 +171,13 @@ if os then
     return retval
   end
   
-  function GetNumRaidMembers()
-    local retval = 1
-    if (DEBUG.GetNumRaidMembers) then
-      retval = DEBUG.GetNumRaidMembers;
-    else
-      print("Cant find DEBUG.GetNumRaidMembers")
-    end
-    return retval
-  end
   
-  function GetNumPartyMembers()
+  function GetNumGroupMembers()
     local retval = 1
-    if (DEBUG.GetNumPartyMembers) then
-      retval = DEBUG.GetNumPartyMembers;
+    if (DEBUG.GetNumGroupMembers) then
+      retval = DEBUG.GetNumGroupMembers;
     else
-      print("Cant find DEBUG.GetNumPartyMembers")
+      print("Cant find DEBUG.GetNumGroupMembers")
     end
     return retval
   end
