@@ -22,6 +22,11 @@ function deepcopy(o, seen)
 end
 
 
+function DoesPlayerHaveSpell(id)
+    local spell = GetSpellInfo(id)
+    return spell == GetSpellInfo(spell)
+end
+
 --local clock = os.clock
 function sleep(numSecToSleep)  -- seconds
   local startTime = GetTime()
