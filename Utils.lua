@@ -49,12 +49,13 @@ function math.round(x)
 end
 
 function string_split(strToSplit, sep)
-    local sep, fields = sep or ":", {}
+  sep = sep or ":"
+  local fields = {}
 	if (strToSplit) then
     	local pattern = string.format("([^%s]+)", sep)
     	strToSplit:gsub(pattern, function(c) fields[#fields+1] = c end)		
 	end        
-    return fields
+  return fields
 end
 
 

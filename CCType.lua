@@ -87,7 +87,6 @@ end
 
 
 function CCType:IsActive()
-  local retval = false;
   if (self._IsActiveCC) then
     if (GetTime() > self._ActiveCCExpires) then
       self._IsActiveCC = false

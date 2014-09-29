@@ -1,18 +1,18 @@
 Message = {}
 Message.__index = Message; -- failed table lookups on the instances should fallback to the class table, to get methods
 
-GVAR = {}
-UIWidgets = {}
+--GVAR = {}
+--UIWidgets = {}
 
 
 function Message.new (options)
   local self = setmetatable({}, Message)
-  self.Text = "";
+  self.CompleteText = "";
   self.From = "";
   self.To = "";
   self.ReceivePrefix = "blankprefix";
   self.Header = "";
-  self.Payload = ""
+  self.Body = ""
   self.Time = ""
   return self;
 end
@@ -20,11 +20,11 @@ end
 --function Message:Clone(message)
 --  local objMsg = Message.new();
 --  if (message) then
---    objMsg.Text = message.Text
+--    objMsg.CompleteText = message.CompleteText
 --    objMsg.From = message.From
 --    objMsg.To = message.To
 --    objMsg.Prefix = message.Prefix
---    objMsg.Payload = message.Payload
+--    objMsg.Body = message.Body
 --    objMsg.Header = message.Header
 --    objMsg.Body = message.Body
 --    objMsg.Time = message.Time
@@ -38,20 +38,19 @@ function Message:SendMessagePrefixed(strPrefix, strType, strMessage, strTarget)
 	end
 --	print("Preparing message for sending ");
   self.Header = tostring(strType)
-  --self.Payload = tostring(self.Header).."."..tostring(strMessage)
-  self.Payload = tostring(strMessage)
+  self.Body = tostring(strMessage)
   self.To = tostring(strTarget);
   if DEBUG and DEBUG.LogMessages then
     table.insert(GVAR.MessageLog, self);
   end
 
   if (strTarget) then
-      print("DEBUG: Message.SendMessagePrefixed:"..strPrefix ..", "..self.Payload.." : "..self.To)
-    SendAddonMessage(strPrefix, self.Payload, "WHISPER", self.To)
+      print("DEBUG: Message.SendMessagePrefixed:"..strPrefix ..", ".. tostring(self.Header).."."..tostring(self.Body).." : "..self.To)
+    SendAddonMessage(strPrefix, tostring(self.Header).."."..tostring(self.Body), "WHISPER", self.To)
   else
     --If we are in a party or a raid
-      --print("DEBUG: Message.SendMessagePrefixed:"..strPrefix .." : "..strType.." : "..strMessage.." : TO PARTY")
-	SendAddonMessage(strPrefix, self.Payload, "PARTY")
+      print("DEBUG: Message.SendMessagePrefixed:"..strPrefix .." : "..strType.." : "..strMessage.." : TO PARTY")
+	SendAddonMessage(strPrefix, tostring(self.Header).."."..tostring(self.Body), "PARTY")
   end
   self.Time = GetTime()
 
@@ -64,30 +63,23 @@ function Message:Format(strPrefix, strMessage, strType, strSender)
   if strPrefix == self.ReceivePrefix then
 	local messageSplit = string_split(strMessage, ".");
 
-    self.Text = strMessage;
+
+
+  --for i,v in ipairs(messageSplit) do
+  --  print("Split["..i.."] "..messageSplit[i]);
+  --end
+
+    --print("Message is "..strMessage);
+    self.CompleteText = strMessage;
+    --print("Header=Split[1] "..messageSplit[1]);
     self.Header = messageSplit[1];
+    --print("Body=Split[2] "..messageSplit[2]);
     self.Body = messageSplit[2];
-    
---    local iHeaderLen = 4;
---    self.Header = string.sub(strMessage, 1, iHeaderLen)
---    self.Body = string.sub(strMessage, 1+iHeaderLen+1)
---    
+  
     self.Type = strType
     self.From = strSender
     self.Time = GetTime()
-    
---    print("Format Message: strMessage ".. tostring(strMessage));
---    print("Format Message: self.Text ".. tostring(self.Text));
---    print("Format Message: self.Header ".. tostring(self.Header));
---    print("Format Message: self.Body ".. tostring(self.Body));
---    print("Format Message: self.Type ".. tostring(self.Type));
---    print("Format Message: self.From ".. tostring(self.From));
---    print("Format Message: self.strSender ".. tostring(self.strSender));
---    print("Format Message: self.Time ".. tostring(self.Type));
---    print("Format Message: self.Type ".. tostring(self.Type));
---    print("Format Message: self.Type ".. tostring(self.Type));
---    print("Format Message: self.Type ".. tostring(self.Type));
---    print("Format Message: self.Type ".. tostring(self.Type));
+
   else
 		print("Message prefix is "..strPrefix.." expecting to receive ".. self.ReceivePrefix)
   end

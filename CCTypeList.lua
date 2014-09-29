@@ -71,6 +71,7 @@ end
 function CCTypeList:ListSpellIds()
   local strJoin = "";
   local strResult = "";
+  local i,cctype
   for i,cctype in ipairs(self) do
     strResult = strResult..strJoin..tostring(cctype.SpellId)
     strJoin = ",";
@@ -80,6 +81,7 @@ end
 
 function CCTypeList:MaxActiveCCExpires()
 	local maxExpiry = 0;
+  local i,cctype
 	for i,cctype in ipairs(self) do
 		maxExpiry = math.max(maxExpiry, cctype:ActiveCCExpires());
 	end  
