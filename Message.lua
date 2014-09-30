@@ -52,7 +52,7 @@ function Message:SendMessagePrefixed(strPrefix, strType, strMessage, strTarget)
       --print("DEBUG: Message.SendMessagePrefixed:"..strPrefix .." : "..strType.." : "..strMessage.." : TO PARTY")
 	SendAddonMessage(strPrefix, tostring(self.Header).."."..tostring(self.Body), "PARTY")
   end
-  self.Time = GetTime()
+  self.Time = GetPvPClockTime()
 
   return self
 end
@@ -78,7 +78,7 @@ function Message:Format(strPrefix, strMessage, strType, strSender)
   
     self.Type = strType
     self.From = strSender
-    self.Time = GetTime()
+    self.Time = GetPvPClockTime()
 
   else
 		print("Message prefix is "..strPrefix.." expecting to receive ".. self.ReceivePrefix)

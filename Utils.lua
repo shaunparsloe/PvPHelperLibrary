@@ -29,9 +29,9 @@ end
 
 --local clock = os.clock
 function sleep(numSecToSleep)  -- seconds
-  local startTime = GetTime()
+  local startTime = GetPvPClockTime()
   local sec1 = startTime + 1;
-  while GetTime() - startTime <= numSecToSleep do 
+  while GetPvPClockTime() - startTime <= numSecToSleep do 
     --if clock() > sec1 then
     --  sec1 = sec1 + 1;
     --  print("Sleep 1sec...");
@@ -94,7 +94,7 @@ end
 
 --Conditional depending on test/live
 if (os) then
-  function GetTime()
+  function GetPvPClockTime()
     if DEBUG and DEBUG.SetClockSeconds then
       return DEBUG.SetClockSeconds
     else
@@ -105,7 +105,7 @@ else
   function print(message)
     ChatFrame1:AddMessage(message)
   end
-  function GetTime()
+  function GetPvPClockTime()
     return time()
   end
 end
