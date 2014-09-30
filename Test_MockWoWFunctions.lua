@@ -102,7 +102,9 @@ if os then
   function RegisterAddonMessagePrefix(string) end;
   function UI_SetMainAssist() end;
    
-  function PlaySoundFile(soundFile) print("MOCK:Playing:"..tostring(soundFile)); end;
+  function PlaySoundFile(soundFile) 
+    --print("DEBUG:MOCK:Playing:"..tostring(soundFile)); 
+  end;
     
   function GetPlayerInfoByGUID(guid)
     return "Rogue", "ROGUE", "Human", "HUMAN", "Male", "Sahk", "Hellfire"
