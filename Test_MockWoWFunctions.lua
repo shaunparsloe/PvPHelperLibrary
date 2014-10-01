@@ -175,7 +175,7 @@ if os then
   
   
   function GetNumGroupMembers()
-    local retval = 1
+    local retval = 0;
     if (DEBUG.GetNumGroupMembers) then
       retval = DEBUG.GetNumGroupMembers;
     else
