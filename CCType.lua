@@ -34,9 +34,9 @@ end
 
 function CCType:CastSpell()
   --print ("self._IsCooldown = true;");
-  --print ("self._CooldownExpires = "..tostring(GetTime() + self.Cooldown));
-  self._CooldownExpires = GetTime() + self.Cooldown;
-  self._ActiveCCExpires = GetTime() + self.Duration;
+  --print ("self._CooldownExpires = "..tostring(GetPvPClockTime() + self.Cooldown));
+  self._CooldownExpires = GetPvPClockTime() + self.Cooldown;
+  self._ActiveCCExpires = GetPvPClockTime() + self.Duration;
   self._IsCooldown = true;
   self._IsActiveCC = true;
   return self
@@ -61,7 +61,7 @@ end
 function CCType:IsAvailable()
   local retval = false;
   if (self._IsCooldown) then
-    if (GetTime() > self._CooldownExpires) then
+    if (GetPvPClockTime() > self._CooldownExpires) then
       self._IsCooldown = false
       retval = true;
     end
@@ -75,7 +75,7 @@ end
 function CCType:CooldownExpires()
   local seconds = 0;
   if self._IsCooldown then
-    seconds = math.round(self._CooldownExpires - GetTime(),1);
+    seconds = math.round(self._CooldownExpires - GetPvPClockTime(),1);
     if (seconds <= 0) then
       self._IsCooldown = false
       seconds = 0;
@@ -88,7 +88,7 @@ end
 
 function CCType:IsActive()
   if (self._IsActiveCC) then
-    if (GetTime() > self._ActiveCCExpires) then
+    if (GetPvPClockTime() > self._ActiveCCExpires) then
       self._IsActiveCC = false
     end
   end
@@ -99,7 +99,7 @@ end
 function CCType:ActiveCCExpires()
   local seconds = 0;
   if self:IsActive() then
-    seconds = self._ActiveCCExpires - GetTime();
+    seconds = self._ActiveCCExpires - GetPvPClockTime();
     if (seconds < 0) then
       self._IsActiveCC = false
       seconds = 0;

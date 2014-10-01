@@ -102,7 +102,9 @@ if os then
   function RegisterAddonMessagePrefix(string) end;
   function UI_SetMainAssist() end;
    
-  function PlaySoundFile(soundFile) print("MOCK:Playing:"..tostring(soundFile)); end;
+  function PlaySoundFile(soundFile) 
+    --print("MOCK:Playing:"..tostring(soundFile)); 
+  end;
     
   function GetPlayerInfoByGUID(guid)
     return "Rogue", "ROGUE", "Human", "HUMAN", "Male", "Sahk", "Hellfire"
@@ -110,20 +112,20 @@ if os then
     
   function GetSpellInfo(spellIdOrName)
     if not GVAR.AllCCTypes then
-      --print("GetSpellInfo: Loading CCTypes");
+      --print("MOCK:GetSpellInfo: Loading CCTypes");
       GVAR.AllCCTypes = deepcopy(CCTypeList:LoadAllCCTypes());
     end
     local localizedClass, myClass = UnitClass("player");
     foundSpellId = GVAR.AllCCTypes:LookupSpellId(spellIdOrName);
     if foundSpellId then
-      --print("GetSpellInfo:FoundSpellId:"..spellIdOrName);
+      --print("MOCK:GetSpellInfo:FoundSpellId:"..spellIdOrName);
       return foundSpellId.CCName;
     else
       local i, ccSpell 
       for i, ccSpell in ipairs(GVAR.AllCCTypes) do
-        --print("GetSpellInfo: Checking "..spellIdOrName);
+        --print("MOCK:GetSpellInfo: Checking "..spellIdOrName);
         if ccSpell.CCName == spellIdOrName then
-          --print("GetSpellInfo: Found "..spellIdOrName..".  My Class = "..myClass..", ccClass="..ccSpell.Class);
+          --print("MOCK:GetSpellInfo: Found "..spellIdOrName..".  My Class = "..myClass..", ccClass="..ccSpell.Class);
           --if myClass == ccSpell.Class then
             return ccSpell.CCName;
           --end
@@ -146,7 +148,7 @@ if os then
       retval = DEBUG.spells[spellId].retval
       nomana = DEBUG.spells[spellId].nomana
     else
-      print("Cant find DEBUG.spells["..tostring(spellId).."]")
+      print("MOCK:Cant find DEBUG.spells["..tostring(spellId).."]")
     end
     return retval, nomana
   end
@@ -156,7 +158,7 @@ if os then
     if (DEBUG.UnitInRaid[Unit]) then
       retval = DEBUG.UnitInRaid[Unit].retval
     else
-      print("Cant find DEBUG.UnitInRaid["..tostring(Unit).."]")
+      print("MOCK:Cant find DEBUG.UnitInRaid["..tostring(Unit).."]")
     end
     return retval
   end
@@ -166,18 +168,18 @@ if os then
     if (DEBUG.UnitInParty[Unit]) then
       retval = DEBUG.UnitInParty[Unit].retval
     else
-      print("Cant find DEBUG.UnitInParty["..tostring(Unit).."]")
+      print("MOCK:Cant find DEBUG.UnitInParty["..tostring(Unit).."]")
     end
     return retval
   end
   
   
   function GetNumGroupMembers()
-    local retval = 1
+    local retval = 0;
     if (DEBUG.GetNumGroupMembers) then
       retval = DEBUG.GetNumGroupMembers;
     else
-      print("Cant find DEBUG.GetNumGroupMembers")
+      print("MOCK:Cant find DEBUG.GetNumGroupMembers")
     end
     return retval
   end
@@ -188,22 +190,14 @@ if os then
   
   function UnitIsConnected()
     if DEBUG.UnitIsDisconnected then
-      print("Unit is not connected")
+      print("MOCK:UnitIsConnected():Unit is not connected")
       return nil;
     else
       return 1;
     end
   end
   
-  function GetRaidRosterInfo(raidIndex)
-    if (DEBUG.GetRaidRosterInfo and DEBUG.GetRaidRosterInfo[raidIndex]) then
-      local x = DEBUG.GetRaidRosterInfo[raidIndex]
-      return x.name, x.rank, x.subgroup, x.level, x.class, x.fileName, x.zone, x.online, x.isDead, x.role, x.isML
-    else
-      print("Cant find DEBUG.GetRaidRosterInfo["..tostring(raidIndex).."]")
-      return nil
-    end
-  end
+
   function strsplit(sep, inputstr)
     if sep == nil then
             sep = "%s"
@@ -220,9 +214,9 @@ if os then
   --TEST
   function SendAddonMessage(prefix, message, group, person)
     if person then
-      --print("SENDADDONMESSAGE: "..group.." to "..person.." Prefix="..prefix.." Message="..message)
+      --print("MOCK:SENDADDONMESSAGE: "..group.." to "..person.." Prefix="..prefix.." Message="..message)
     else
-      --print("SENDADDONMESSAGE: To "..group.." Prefix:"..prefix.." Message="..message)
+      --print("MOCK:SENDADDONMESSAGE: To "..group.." Prefix:"..prefix.." Message="..message)
     end
   end
   
