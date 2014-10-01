@@ -24,7 +24,12 @@ end
 
 function DoesPlayerHaveSpell(id)
     local spell = GetSpellInfo(id)
-    return spell == GetSpellInfo(spell)
+    --print("Looking at SPELL id "..id.." and finding spell "..tostring(spell));
+    local spellString = tostring(spell);
+    local retval = (spell == GetSpellInfo(spellString));
+    --print("Looking at spell "..tostring(spell).." and finding "..tostring(GetSpellInfo(tostring(spell))));
+    --print("Returning "..tostring(retval));
+    return retval;
 end
 
 --local clock = os.clock
@@ -110,5 +115,5 @@ else
   end
 end
 -- ****************************************************
--- UTILS
--- ****************************************************
+---- UTILS
+---- ****************************************************
