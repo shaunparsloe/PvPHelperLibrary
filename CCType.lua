@@ -44,17 +44,17 @@ end
 
 
 function CCType:Reset()
-	self._IsCooldown = false;
-	self._IsActiveCC = false;
-	self._CooldownExpires = 0;
-	self._ActiveCCExpires = 0;
-	return self
+  self._IsCooldown = false;
+  self._IsActiveCC = false;
+  self._CooldownExpires = 0;
+  self._ActiveCCExpires = 0;
+  return self
 end
 
 function CCType:RemoveActiveCC()
-	self._IsActiveCC = false;
-	self._ActiveCCExpires = 0;
-	return self
+  self._IsActiveCC = false;
+  self._ActiveCCExpires = 0;
+  return self
 end
 
 

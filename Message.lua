@@ -33,10 +33,10 @@ end
 --end
 
 function Message:SendMessagePrefixed(strPrefix, strType, strMessage, strTarget)
-	if not strMessage then
-		strMessage = "";
-	end
---	print("Preparing message for sending ");
+  if not strMessage then
+    strMessage = "";
+  end
+--  print("Preparing message for sending ");
   self.Header = tostring(strType)
   self.Body = tostring(strMessage)
   self.To = tostring(strTarget);
@@ -50,7 +50,7 @@ function Message:SendMessagePrefixed(strPrefix, strType, strMessage, strTarget)
   else
     --If we are in a party or a raid
       --print("DEBUG: Message.SendMessagePrefixed:"..strPrefix .." : "..strType.." : "..strMessage.." : TO PARTY")
-	SendAddonMessage(strPrefix, tostring(self.Header).."."..tostring(self.Body), "PARTY")
+  SendAddonMessage(strPrefix, tostring(self.Header).."."..tostring(self.Body), "PARTY")
   end
   self.Time = GetPvPClockTime()
 
@@ -61,7 +61,7 @@ end
 
 function Message:Format(strPrefix, strMessage, strType, strSender)
   if strPrefix == self.ReceivePrefix then
-	local messageSplit = string_split(strMessage, ".");
+  local messageSplit = string_split(strMessage, ".");
 
 
 
@@ -81,6 +81,6 @@ function Message:Format(strPrefix, strMessage, strType, strSender)
     self.Time = GetPvPClockTime()
 
   else
-		print("Message prefix is "..strPrefix.." expecting to receive ".. self.ReceivePrefix)
+    print("Message prefix is "..strPrefix.." expecting to receive ".. self.ReceivePrefix)
   end
 end

@@ -16,7 +16,7 @@ GVAR = {};
 function TEST_MESSAGE_FORMAT_SHORT()
   -- Arrange
   objMessage = Message.new();
-  objMessage.ReceivePrefix = "TestPrefix";	
+  objMessage.ReceivePrefix = "TestPrefix";  
   
   DEBUG.SetClockSeconds = 1000;
   
@@ -40,7 +40,7 @@ function TEST_MESSAGE_FORMAT_SHORT()
 function TEST_MESSAGE_FORMAT()
   -- Arrange
   objMessage = Message.new();
-  objMessage.ReceivePrefix = "TestPrefix";	
+  objMessage.ReceivePrefix = "TestPrefix";  
   
   DEBUG.SetClockSeconds = 1000;
   

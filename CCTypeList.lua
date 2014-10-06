@@ -16,36 +16,36 @@ end
 
 function CCTypeList:Add(objCCType)
   table.insert(self, objCCType);
-  self.SpellIDLookup[tostring(objCCType.SpellId)] = table.getn(self); 	-- Add to lookup table.
+  self.SpellIDLookup[tostring(objCCType.SpellId)] = table.getn(self);   -- Add to lookup table.
 end
 
 function CCTypeList:Delete(objCCType)
---	print("DELETING "..objCCType.SpellId)
---		for i,cctype in ipairs(self) do
---			print("Self SpellID Lookup " ..i.. " - " .. cctype.SpellId .. " " .. cctype.CCName);
---		end  
---	print("Lookup ID "..objCCType.SpellId)
-	
-	local foundId = self.SpellIDLookup[tostring(objCCType.SpellId)];
-	--print("FoundID="..tostring(foundId));
-	
-  	if foundId then
-  		
-		for i,cctype in ipairs(self) do
-			--print("BeltAndBraces-SELF-Lookup " ..i.." - " .. cctype.SpellId .. " " .. cctype.CCName);
-			if cctype.SpellId == objCCType.SpellId then
-				--print("Found and removed self at " .. i);
-				table.remove(self, i);
-			end
-		end  
-		for i,cctype in ipairs(self.SpellIDLookup) do
-			---print("BeltAndBracesSpellIDLookup " ..i.." - " .. cctype.SpellId .. " " .. cctype.CCName);
-			if cctype.SpellId == objCCType.SpellId then
-				--print("Found and removed Lookup" .. i);
-				table.remove(self.SpellIDLookup, i);
-			end
-		end  
-	end
+--  print("DELETING "..objCCType.SpellId)
+--    for i,cctype in ipairs(self) do
+--      print("Self SpellID Lookup " ..i.. " - " .. cctype.SpellId .. " " .. cctype.CCName);
+--    end  
+--  print("Lookup ID "..objCCType.SpellId)
+  
+  local foundId = self.SpellIDLookup[tostring(objCCType.SpellId)];
+  --print("FoundID="..tostring(foundId));
+  
+    if foundId then
+      
+    for i,cctype in ipairs(self) do
+      --print("BeltAndBraces-SELF-Lookup " ..i.." - " .. cctype.SpellId .. " " .. cctype.CCName);
+      if cctype.SpellId == objCCType.SpellId then
+        --print("Found and removed self at " .. i);
+        table.remove(self, i);
+      end
+    end  
+    for i,cctype in ipairs(self.SpellIDLookup) do
+      ---print("BeltAndBracesSpellIDLookup " ..i.." - " .. cctype.SpellId .. " " .. cctype.CCName);
+      if cctype.SpellId == objCCType.SpellId then
+        --print("Found and removed Lookup" .. i);
+        table.remove(self.SpellIDLookup, i);
+      end
+    end  
+  end
 end
 
 -- NOT USED (Left this in in case we need to ever do a rebuild)
@@ -80,12 +80,12 @@ function CCTypeList:ListSpellIds()
 end
 
 function CCTypeList:MaxActiveCCExpires()
-	local maxExpiry = 0;
+  local maxExpiry = 0;
   local i,cctype
-	for i,cctype in ipairs(self) do
-		maxExpiry = math.max(maxExpiry, cctype:ActiveCCExpires());
-	end  
-	return maxExpiry;
+  for i,cctype in ipairs(self) do
+    maxExpiry = math.max(maxExpiry, cctype:ActiveCCExpires());
+  end  
+  return maxExpiry;
 end
 
 

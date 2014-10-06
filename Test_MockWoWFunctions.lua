@@ -26,26 +26,26 @@ if os then
   function Frame:SetAlpha(intAlpha) end
   function Frame:SetText(strText) self.Text = strText; end
   function Frame:SetMovable(bln) end
-	function Frame:EnableMouse(bln) end
-	function Frame:RegisterForDrag(strMouseButton) end
-	function Frame:SetResizable(bln) end
-	function Frame:SetToplevel(bln) end
-	function Frame:SetClampedToScreen(bln) end
+  function Frame:EnableMouse(bln) end
+  function Frame:RegisterForDrag(strMouseButton) end
+  function Frame:SetResizable(bln) end
+  function Frame:SetToplevel(bln) end
+  function Frame:SetClampedToScreen(bln) end
 
-	function Frame:SetScript(strAction, func) end
+  function Frame:SetScript(strAction, func) end
 
-	function Frame:SetBackdrop(options) end
+  function Frame:SetBackdrop(options) end
   
   function Frame:SetPoint(relativePoint, ofsx, ofsy) end; 
-	function Frame:SetSize(iWidth, iHeight) end; 
-	function Frame:SetWidth(iWidth) end; 
-	function Frame:SetHeight(iHeight) end;
+  function Frame:SetSize(iWidth, iHeight) end; 
+  function Frame:SetWidth(iWidth) end; 
+  function Frame:SetHeight(iHeight) end;
   function Frame:CreateFontString(strName, strLayer, strInherits) return Frame.new(); end
   function Frame:SetUserPlaced(bln) end;
 
-	function Frame:SetFontObject() return nil; end;
-	function Frame:SetJustifyH() return nil; end;
-	function Frame:SetFading() return nil; end;
+  function Frame:SetFontObject() return nil; end;
+  function Frame:SetJustifyH() return nil; end;
+  function Frame:SetFading() return nil; end;
 
   function Frame:SetNormalFontObject(strFontObject) end;
   function Frame:SetHighlightFontObject(strFontObject) end;
@@ -71,8 +71,8 @@ if os then
     return self;
   end
   function Texture:SetTexture(strTex) end;
-	function Texture:SetTexCoord(p1, p2, p3, p4) end
-	function Texture:SetAllPoints()	end
+  function Texture:SetTexCoord(p1, p2, p3, p4) end
+  function Texture:SetAllPoints()  end
   function Texture:SetWidth(buttonWidth) self.Width = buttonWidth end
   function Texture:GetWidth() return self.Width; end
   function Texture:SetHeight(buttonHeight) end
@@ -94,7 +94,7 @@ if os then
     return retval; 
   end
  
-	function GetRealmName() return "Hellfire" end
+  function GetRealmName() return "Hellfire" end
   
   function UnitClass(target) return "Rogue", "ROGUE", 4; end;
   function UnitHealth(unit) return 100; end

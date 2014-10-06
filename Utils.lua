@@ -61,20 +61,20 @@ end
 function string_split(strToSplit, sep)
   sep = sep or ":"
   local fields = {}
-	if (strToSplit) then
-    	local pattern = string.format("([^%s]+)", sep)
-    	strToSplit:gsub(pattern, function(c) fields[#fields+1] = c end)		
-	end        
+  if (strToSplit) then
+      local pattern = string.format("([^%s]+)", sep)
+      strToSplit:gsub(pattern, function(c) fields[#fields+1] = c end)    
+  end        
   return fields
 end
 
 
 local function ClassHexColor(class)
-	local hex
-	if classcolors[class] then
-		hex = format("%.2x%.2x%.2x", classcolors[class].r*255, classcolors[class].g*255, classcolors[class].b*255)
-	end
-	return hex or "cccccc"
+  local hex
+  if classcolors[class] then
+    hex = format("%.2x%.2x%.2x", classcolors[class].r*255, classcolors[class].g*255, classcolors[class].b*255)
+  end
+  return hex or "cccccc"
 end
 
 
