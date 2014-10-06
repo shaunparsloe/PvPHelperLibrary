@@ -39,7 +39,7 @@ function sleep(numSecToSleep)  -- seconds
   while GetPvPClockTime() - startTime <= numSecToSleep do 
     --if clock() > sec1 then
     --  sec1 = sec1 + 1;
-    --  print("Sleep 1sec...");
+      --print("DEBUG:Utils:Clock:Sleep: 1sec...");
     --end
   end
 end

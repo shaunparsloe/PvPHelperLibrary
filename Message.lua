@@ -36,7 +36,7 @@ function Message:SendMessagePrefixed(strPrefix, strType, strMessage, strTarget)
   if not strMessage then
     strMessage = "";
   end
---  print("Preparing message for sending ");
+--print("DEBUG:Preparing message for sending ");
   self.Header = tostring(strType)
   self.Body = tostring(strMessage)
   self.To = tostring(strTarget);
@@ -66,7 +66,7 @@ function Message:Format(strPrefix, strMessage, strType, strSender)
 
 
   --for i,v in ipairs(messageSplit) do
-  --  print("Split["..i.."] "..messageSplit[i]);
+    --print("DEBUG:Message:Split["..i.."] "..messageSplit[i]);
   --end
 
     --print("Message is "..strMessage);
@@ -81,6 +81,6 @@ function Message:Format(strPrefix, strMessage, strType, strSender)
     self.Time = GetPvPClockTime()
 
   else
-    print("Message prefix is "..strPrefix.." expecting to receive ".. self.ReceivePrefix)
+    --print("DEBUG:Message prefix is "..strPrefix.." expecting to receive ".. self.ReceivePrefix)
   end
 end

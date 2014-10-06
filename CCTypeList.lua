@@ -20,16 +20,10 @@ function CCTypeList:Add(objCCType)
 end
 
 function CCTypeList:Delete(objCCType)
---  print("DELETING "..objCCType.SpellId)
---    for i,cctype in ipairs(self) do
---      print("Self SpellID Lookup " ..i.. " - " .. cctype.SpellId .. " " .. cctype.CCName);
---    end  
---  print("Lookup ID "..objCCType.SpellId)
-  
+
   local foundId = self.SpellIDLookup[tostring(objCCType.SpellId)];
-  --print("FoundID="..tostring(foundId));
-  
-    if foundId then
+
+  if foundId then
       
     for i,cctype in ipairs(self) do
       --print("BeltAndBraces-SELF-Lookup " ..i.." - " .. cctype.SpellId .. " " .. cctype.CCName);
@@ -47,15 +41,6 @@ function CCTypeList:Delete(objCCType)
     end  
   end
 end
-
--- NOT USED (Left this in in case we need to ever do a rebuild)
---function CCTypeList.ReBuildSpellIdLookup()
---  self.SpellIDLookup = nil;
---  self.SpellIDLookup = {}
---  for i,v in ipairs(self) do
---    self.SpellIDLookup[tostring(v.SpellId)] = i
---  end
---end
 
 -- Reverse lookup the SpellId.  Return found spell.
 function CCTypeList:LookupSpellId(spellId)
